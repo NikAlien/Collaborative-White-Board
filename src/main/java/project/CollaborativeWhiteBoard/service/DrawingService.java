@@ -17,8 +17,11 @@ public class DrawingService {
     private UserRepository userRepository;
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private RoomService roomService;
 
     public DrawEvent addDrawEvent(DrawEvent drawEvent) {
+        roomService.updateLastActivity(drawEvent.getRoomID());
         return drawingEventRepository.addNewEvent(drawEvent);
     }
 

@@ -6,26 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Repository
 public class DrawingEventRepository {
-    private final Map<Integer, List<DrawEvent>> drawingHistory = new ConcurrentHashMap<>();
+    private final Map<Integer, CopyOnWriteArrayList<DrawEvent>> drawingHistory = new ConcurrentHashMap<>();
 
     public List<DrawEvent> findById(int id) {
-        return drawingHistory.getOrDefault(id, new ArrayList<>());
+        return drawingHistory.getOrDefault(id, new CopyOnWriteArrayList<>());
     }
 
     public DrawEvent addNewEvent(DrawEvent event) {
-        List<DrawEvent> events = drawingHistory.getOrDefault(event.getRoomID(), new ArrayList<>());
+        CopyOnWriteArrayList<DrawEvent> events = drawingHistory
+                .computeIfAbsent(event.getRoomID(), k -> new CopyOnWriteArrayList<>());
         events.add(event);
-        drawingHistory.put(event.getRoomID(), events);
         return event;
     }
 
     public void removeRoomHistory(int id) {
-        drawingHistory.put(id, new ArrayList<>());
+        drawingHistory.put(id, new CopyOnWriteArrayList<>());
     }
-
-
-
 }
