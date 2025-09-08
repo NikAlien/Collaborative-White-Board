@@ -2,8 +2,6 @@ package project.CollaborativeWhiteBoard.repository;
 
 import org.springframework.stereotype.Repository;
 import project.CollaborativeWhiteBoard.model.DrawEvent;
-import project.CollaborativeWhiteBoard.model.User;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +22,8 @@ public class DrawingEventRepository {
         return event;
     }
 
-    public void deleteById(int id) {
-        drawingHistory.remove(id);
+    public void removeRoomHistory(int id) {
+        drawingHistory.put(id, new ArrayList<>());
     }
 
 
