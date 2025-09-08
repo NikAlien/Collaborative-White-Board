@@ -1,15 +1,10 @@
 package project.CollaborativeWhiteBoard.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
+@Data
 public class User {
     private int userID;
-    private CursorPosition cursorPosition;
 }
