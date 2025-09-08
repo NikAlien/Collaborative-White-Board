@@ -1,9 +1,7 @@
 package project.CollaborativeWhiteBoard.repository;
 
 import org.springframework.stereotype.Repository;
-import project.CollaborativeWhiteBoard.model.Room;
 import project.CollaborativeWhiteBoard.model.User;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
